@@ -1,1 +1,45 @@
+class Team {
+    constructor(name) {
+        this.name = name;
+        this.points = 0;
+    }
+
+    addPoints(points) {
+        this.points += points;
+    }
+
+    getPoints() {
+        return this.points;
+    }
+}
+
+class BasketballGame {
+    constructor(team1Name, team2Name) {
+        this.team1 = new Team(team1Name);
+        this.team2 = new Team(team2Name);
+    }
+
+    score(teamName, points) {
+        if (teamName === this.team1.name) {
+            this.team1.addPoints(points);
+        } else if (teamName === this.team2.name) {
+            this.team2.addPoints(points);
+        } else {
+            console.log("Unknown team name");
+        }
+    }
+
+    getScore() {
+        return `${this.team1.name}: ${this.team1.getPoints()} - ${this.team2.name}: ${this.team2.getPoints()}`;
+    }
+}
+
+// Piemērs lietošanai
+const game = new BasketballGame("Team A", "Team B");
+
+game.score("Team A", 2);
+game.score("Team B", 3);
+game.score("Team A", 3);
+
+console.log(game.getScore());  // Izvade: Team A: 5 - Team B: 3
 
